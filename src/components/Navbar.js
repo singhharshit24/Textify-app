@@ -17,14 +17,14 @@ export default function Navbar(props) {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
+                        <li className="nav-item active mx-1">
+                            <Link style={{textDecoration: "none"}} className="nav-a" to="/">Home <span className="sr-only">(current)</span></Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/about">{props.about}</Link>
+                        <li className="nav-item mx-1">
+                            <Link style={{textDecoration: "none"}} className="nav-a" to="/about">{props.about}</Link>
                         </li>
                         {/* <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a className="nav-a dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -35,7 +35,7 @@ export default function Navbar(props) {
               </div>
             </li> */}
                         {/* <li className="nav-item">
-              <a className="nav-link disabled" href="/" tabindex="-1" aria-disabled="true">Disabled</a>
+              <a className="nav-a disabled" href="/" tabindex="-1" aria-disabled="true">Disabled</a>
             </li> */}
                     </ul>
                     {/* <form className="form-inline my-2 my-lg-0">
@@ -49,13 +49,13 @@ export default function Navbar(props) {
                     </button>
                     <ul className="dropdown-menu">
                         <li>
-                            <button className='btn' onClick={props.handleBlueDark}>Enable Blue Theme Dark Mode</button>
+                            <button className='btn' onClick={()=>{props.handleDark("#151f59")}}>Enable Blue Theme Dark Mode</button>
                         </li>
                         <li>
-                            <button className='btn' onClick={props.handleGreenDark}>Enable Green Theme Dark Mode</button>
+                            <button className='btn' onClick={()=>{props.handleDark("#234b2c")}}>Enable Green Theme Dark Mode</button>
                         </li>
                         <li>
-                            <button className='btn' onClick={props.handleNoDark} >Disable Dark Mode</button>
+                            <button className='btn' onClick={()=>{props.handleDark("white")}} >Disable Dark Mode</button>
                         </li>
                     </ul>
                 </div>

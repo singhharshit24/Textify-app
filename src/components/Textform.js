@@ -4,8 +4,8 @@ export default function Textform(props) {
     const [text, settext] = useState("")
 
     let mystyle = {
-        backgroundColor: props.colour === "#234b2c"?"darkgreen":"#007bff",
-        borderColor: props.colour === "#234b2c"?"darkgreen":"#007bff"
+        backgroundColor: props.colour === "#234b2c" ? "darkgreen" : "#007bff",
+        borderColor: props.colour === "#234b2c" ? "darkgreen" : "#007bff"
     }
 
     const handleUpper = () => {
@@ -41,6 +41,7 @@ export default function Textform(props) {
         let a = document.getElementById("exampleFormControlTextarea1")
         a.select()
         navigator.clipboard.writeText(a.value)
+        document.getSelection().removeAllRanges()
         props.showAlert("Text is copied to clipboard!", "success")
     }
 
@@ -57,23 +58,23 @@ export default function Textform(props) {
         <div>
             <div className="container" style={{ color: props.mode === "dark" ? "white" : "black" }}>
                 <h1>{props.heading}</h1>
-                <textarea className="form-control" style={{ backgroundColor: props.mode === "dark" ? "gray" : "white", color: props.mode === "dark" ? "white" : "black" }} value={text} placeholder="Enter text here ..." id="exampleFormControlTextarea1" rows="8" onChange={handleOnChange}></textarea>
-                <button className='btn btn-primary my-3 mx-1' style={mystyle} onClick={handleUpper} dark>To UPPERCASE</button>
-                <button className='btn btn-primary my-3 mx-1' style={mystyle} onClick={handleLower}>To lowercase</button>
-                <button className='btn btn-primary my-3 mx-1' style={mystyle} onClick={replaceText}>Replace Text</button>
+                <textarea className="form-control" style={{ backgroundColor: props.mode === "dark" ? "#293b37" : "white", color: props.mode === "dark" ? "white" : "black" }} value={text} placeholder="Enter text here ..." id="exampleFormControlTextarea1" rows="8" onChange={handleOnChange}></textarea>
+                <button disabled={text.length === 0} className='btn btn-primary my-3 mx-1' style={mystyle} onClick={handleUpper} dark>To UPPERCASE</button>
+                <button disabled={text.length === 0} className='btn btn-primary my-3 mx-1' style={mystyle} onClick={handleLower}>To lowercase</button>
+                <button disabled={text.length === 0} className='btn btn-primary my-3 mx-1' style={mystyle} onClick={replaceText}>Replace Text</button>
                 {/* <button className='btn btn-primary my-3 mx-1' onClick={removeSpace}>Remove Extra Spaces</button> */}
-                <button className='btn btn-success my-3 mx-1' onClick={copyText}>Copy to Clipboard</button>
-                <button className='btn btn-danger my-3 mx-1' onClick={clearText}>Clear Text</button>
+                <button disabled={text.length === 0} className='btn btn-success my-3 mx-1' onClick={copyText}>Copy to Clipboard</button>
+                <button disabled={text.length === 0} className='btn btn-danger my-3 mx-1' onClick={clearText}>Clear Text</button>
             </div>
             <div className='container' style={{ color: props.mode === "dark" ? "white" : "black" }}>
                 <h2>Text Summary</h2>
                 <p>
-                    No. of Words: {text.length === 0 ? 0 : text.trim().split(" ").length} <br />
+                    No. of Words: {text.split(/\s+/).filter((ele) => { return ele !== "" }).length} <br />
                     No. of Charecters: {text.length} <br />
-                    Reading Time: {0.008 * text.trim().split(" ").length} mins.
+                    Reading Time: {0.008 * text.split(" ").filter((ele) => { return ele !== "" }).length} mins.
                 </p>
                 <h2>Preview</h2>
-                <p>{text.length === 0 ? "Write the text in the textbox above to see the preview ..." : text}</p>
+                <p>{text.length === 0 ? "Nothing to preview ..." : text}</p>
             </div>
         </div>
     )

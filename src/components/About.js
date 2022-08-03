@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 export default function About(props) {
     // const [mystyle, setMystyle] = useState({
@@ -6,7 +6,7 @@ export default function About(props) {
     // })
 
     let mystyle = {
-        backgroundColor: props.mode === "dark" ? props.colour === "#151f59"?"#151f59":"#234b2c" : "white",
+        backgroundColor: props.mode === "dark" ? (props.colour === "#151f59" ? "#151f59" : "#234b2c") : "white",
         color: props.mode === "dark" ? "white" : "black"
     }
     // const [darkbtn, setdarkbtn] = useState("Enable Dark Mode")
